@@ -1,0 +1,46 @@
+# Byte-compiled / cached files
+__pycache__/
+*.py[cod]
+*.swp
+*.swo
+*.bak
+*.log
+app/__pycache__/  
+
+# Virtual environment
+venv/
+.env
+.env.local
+*.venv
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.iml
+
+# Dependency files
+Pipfile
+Pipfile.lock
+poetry.lock
+requirements.txt
+
+# Database / Migrations
+*.sqlite3
+*.db
+migrations/
+
+# Pytest / Testing
+.coverage
+pytest_cache/
+htmlcov/
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Uvicorn logs
+*.log
+logs/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
