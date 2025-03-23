@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-from app.api.routes import user_router
+from app.api import user_router 
 
-app = FastAPI(title="FastApi todo app")
+app = FastAPI()
 
-app.include_router(user_router,prefix="/users",tags=["Users"])
+# Include the user router
+app.include_router(user_router, prefix="/users", tags=["Users"])
 
 @app.get("/")
-def read_root():
-    return {"message":"hello from Api"}
+def root():
+    return {"message": "Welcome to FastAPI!"}
