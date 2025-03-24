@@ -1,31 +1,24 @@
-from fastapi import APIRouter,HTTPException
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException
+from app.db.database import user_collection
+from app.db.models import Users
 
 router = APIRouter()
 
-users = [{"id":1,"name":"manish","email":"manish@gmail.com"},{"id":2,"name":"anish","email":"anish@gmail.com"}]
-
-# Include the user router
-# app.include_router(user_router, prefix="/users", tags=["Users"])
-
-class Users(BaseModel):
-    id:int
-    name:str
-    email:str
-
 @router.get("/")
-def get_all_users():
-     return users
+async def get_all_users():
+    users = await user_collection.find().to_list(length=None)  
+    return users
 
 @router.post("/")
-def addUsers(user:Users):
-    users.append(user)
-    return f"User add successfully"
+async def addUsers(user: Users):
+    user_dict = user.model_dump() 
+    result = await user_collection.insert_one(user_dict)
+    return {"message": "User added successfully", "id": str(result.inserted_id)}
 
-@router.get("/{id}")
-def get_user_id(id: int):
-    for user in users:
-        if(user["id"] == id):
-            return f"{user["name"]} and  {user["id"]}"
-        else:
-            return HTTPException(status_code=404,detail=f"{id} dont exists")
+@router.get("/{email}")
+async def get_user_by_email(email: str):
+    user = await user_collection.find_one({"email": email}) 
+    if user:
+        return {"name": user["username"], "email": user["email"]}  
+
+    raise HTTPException(status_code=404, detail="User not found")

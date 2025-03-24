@@ -2,11 +2,23 @@
 
 A simple To-Do app built with FastAPI that lets users create, update, delete, and manage tasks easily. Fast, lightweight, and easy to use.
 
-```
-to run:
+`built-in venv module to create a virtual environment.`
 
+```
+python -m venv venv
+.\venv\Scripts\Activate
+```
+
+`to deactivate`
+deactivate
+
+`to run:`
+
+```
 uvicorn app.main:app --reload
 ```
 
+```
 netstat -ano | findstr LISTENING
 taskkill /F /IM python.exe
+```
