@@ -7,3 +7,6 @@ to run:
 
 uvicorn app.main:app --reload
 ```
+
+netstat -ano | findstr LISTENING
+taskkill /F /IM python.exe
