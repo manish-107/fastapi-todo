@@ -12,6 +12,10 @@ python -m venv venv
 `to deactivate`
 deactivate
 
+```
+pip freeze > requirement.txt
+```
+
 `to run:`
 
 ```

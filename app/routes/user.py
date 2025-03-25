@@ -1,24 +1,24 @@
 from fastapi import APIRouter, HTTPException
-from app.db.database import user_collection
-from app.db.models import Users
+from app.schemas.user_schema import Users
+from app.crud.user_crud import UserService
+from pydantic import EmailStr
 
 router = APIRouter()
 
 @router.get("/")
 async def get_all_users():
-    users = await user_collection.find().to_list(length=None)  
+    users = await UserService.get_all_users() 
     return users
 
 @router.post("/")
 async def addUsers(user: Users):
-    user_dict = user.model_dump() 
-    result = await user_collection.insert_one(user_dict)
+    result = await UserService.create_user(user)
     return {"message": "User added successfully", "id": str(result.inserted_id)}
 
 @router.get("/{email}")
-async def get_user_by_email(email: str):
-    user = await user_collection.find_one({"email": email}) 
+async def get_user_by_email(email: EmailStr):
+    user = await UserService.get_userby_email(email)
     if user:
-        return {"name": user["username"], "email": user["email"]}  
+        return {"name": user["name"], "email": user["email"]}  
 
     raise HTTPException(status_code=404, detail="User not found")
