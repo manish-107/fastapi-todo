@@ -7,3 +7,7 @@ class Users(BaseModel):
     age:int
     email:EmailStr
     password:str
+
+class SigniRequest(BaseModel):
+    email:EmailStr
+    password:str
