@@ -11,6 +11,6 @@ try:
     db = client["fastapidb"]
     user_collection = db["users"]
 
-    logger.info("🚀 Successfully connected to MongoDB")
+    logger.info(" Successfully connected to MongoDB")
 except Exception as e:
-    logger.error(f"❌ Failed to connect to MongoDB: {e}")
+    logger.error(f" Failed to connect to MongoDB: {e}")

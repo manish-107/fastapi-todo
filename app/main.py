@@ -1,8 +1,7 @@
-from fastapi import FastAPI,Request,HTTPException
+from fastapi import FastAPI
 from app.routes import user_router 
-from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.responses import JSONResponse
-# from app.middlewares.auth_middlware import AuthMiddleware
+# from starlette.middleware.base import BaseHTTPMiddleware
+# from starlette.responses import JSONResponse
 from app.schemas.user_schema import Users,SigniRequest
 from app.crud.user_crud import UserService
 
@@ -23,3 +22,7 @@ app.include_router(user_router, prefix="/users", tags=["Users"])
 @app.get("/")
 def root_route():
     return {"msg":"hello"}
+
+@app.get("/h1")
+def say_helllo():
+    return {"msg":"hi"}
