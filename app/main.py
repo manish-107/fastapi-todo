@@ -4,6 +4,7 @@ from app.routes import user_router
 # from starlette.responses import JSONResponse
 from app.schemas.user_schema import Users,SigniRequest
 from app.crud.user_crud import UserService
+from app.routes.todo import todo_router
 
 app = FastAPI()
 
@@ -18,6 +19,7 @@ async def signup_user(user:Users):
     return {"message": "User added successfully", "id": str(result.inserted_id)}
 
 app.include_router(user_router, prefix="/users", tags=["Users"])
+app.include_router(todo_router,prefix="/todos",tags=["todos"])
 
 @app.get("/")
 def root_route():

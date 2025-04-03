@@ -1,5 +1,4 @@
 from fastapi import APIRouter,Depends,HTTPException
-from app.schemas.user_schema import Users
 from app.crud.user_crud import UserService
 from pydantic import EmailStr
 from app.middlewares.auth_middlware import auth_middleware
