@@ -1,6 +1,6 @@
 from app.database import user_collection
 from fastapi import HTTPException
-from app.models.user_model import UserModel
+from app.models.models import UserModel
 from pydantic import EmailStr
 from typing import Optional
 from app.schemas.user_schema import SigniRequest
