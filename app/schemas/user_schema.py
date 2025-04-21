@@ -6,7 +6,12 @@ class Users(BaseModel):
     username:str
     email:EmailStr
     password:str
+    role:str
 
 class SigniRequest(BaseModel):
     email:EmailStr
     password:str
+
+class TodoResponse(BaseModel):
+    todo_title:str
+    todo_desc:str
