@@ -9,6 +9,7 @@ from app.middlewares.auth_middlware import TokenValidatorMiddleware
 
 app = FastAPI()
 app.add_middleware(TokenValidatorMiddleware)
+#update
 
 @app.post("/signup")
 def signup_user(userData:Users,db:Session = Depends(get_db)):
