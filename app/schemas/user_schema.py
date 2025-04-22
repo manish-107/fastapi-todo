@@ -15,3 +15,6 @@ class SigniRequest(BaseModel):
 class TodoResponse(BaseModel):
     todo_title:str
     todo_desc:str
+
+class TodoCrudData(TodoResponse):
+    user_id:int
