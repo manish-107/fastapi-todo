@@ -24,10 +24,12 @@ def signup_user(userData:Users,db:Session = Depends(get_db)):
 
 @app.post("/signin")
 def signin_user(signindata: SigniRequest, db: Session = Depends(get_db)):
-    user, role_name = UserService.get_userby_email(signindata.email, db)
+    result = UserService.get_userby_email(signindata.email, db)
     
-    if not user:
+    if not result:
         return JSONResponse(status_code=404, content={"msg": "User doesn't exist"})
+    
+    user,role_name = result
     
     if user.password != signindata.password:
         return JSONResponse(status_code=401, content={"msg": "Password doesn't match"})
